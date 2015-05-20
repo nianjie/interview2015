@@ -21,8 +21,8 @@ public class MyFindCommonAncestor implements FindCommonAncestor {
 		int hash2Index = getCommitIndex(commitHashes, commitHash2);
 
 		//
-		List<String> hash1Ancestors = collectAncestors(parentHashes, hash1Index);
-		List<String> hash2Ancestors = collectAncestors(parentHashes, hash2Index);
+		List<String> hash1Ancestors = collectAncestors(commitHashes,parentHashes, hash1Index);
+		List<String> hash2Ancestors = collectAncestors(commitHashes,parentHashes, hash2Index);
 
 		//
 		if (hash1Ancestors.retainAll(hash2Ancestors)) {
@@ -41,12 +41,17 @@ public class MyFindCommonAncestor implements FindCommonAncestor {
 		return -1;
 	}
 
-	private List<String> collectAncestors(String[][] parentHashes,
-			int index) {
+	private List<String> collectAncestors(String[] commitHashes, 
+			String[][] parentHashes, int index) {
 		List<String> ances = new ArrayList<String>();
-		for (int i = index; i < parentHashes.length; i++) {
+		// 
+		if (parentHashes[index] != null) {
+			ances.addAll(Arrays.asList(parentHashes[index]));
+		}
+		
+		for (int i = index+1; i < parentHashes.length; i++) {
 			String[] parents = parentHashes[i];
-			if (parents != null) {
+			if (parents != null && ances.contains(commitHashes[i])) {
 				ances.addAll(Arrays.asList(parents));
 			}
 		}
