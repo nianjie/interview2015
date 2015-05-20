@@ -18,9 +18,6 @@ import java.util.Set;
  */
 public class YourFindCommonAncestor implements FindCommonAncestor {
 
-	/* (非 Javadoc)
-	 * @see findcommonancestor.FindCommonAncestor#findCommmonAncestor(java.lang.String[], java.lang.String[][], java.lang.String, java.lang.String)
-	 */
 	@Override
 	public String findCommmonAncestor(String[] commitHashes,
 			String[][] parentHashes, String commitHash1, String commitHash2) {
