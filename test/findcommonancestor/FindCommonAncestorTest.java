@@ -37,9 +37,35 @@ public class FindCommonAncestorTest {
 	@Test
 	public void testFindCommmonAncestor12() {
 		FindCommonAncestor target = new MyFindCommonAncestor();
-		assertEquals("not correct!", "D", target.findCommmonAncestor(commits, parents, "G", "D"));
+		assertEquals("not correct!", "C", target.findCommmonAncestor(commits, parents, "G", "D"));
 	}
 
+	@Test
+	public void testFindCommmonAncestor13() {
+		//     E-F------L
+		//    / H-I--J /
+		//   / /     |/
+		// A-B-C-D-G-K
+		String[] commits = {"L", "K", "J", "I", "H", "G", "F", "E", "D", "C", "B", "A"};
+		String[][] parents ={{"F"},{"G", "J", "L"}, {"I"}, {"H"}, {"C"}, {"F","D"},{"E"}, {"B"}, {"C"}, {"B"}, {"A"}, null};
+		FindCommonAncestor target = new MyFindCommonAncestor();
+		assertEquals("not correct!", "B", target.findCommmonAncestor(commits, parents, "D", "F"));
+	}
+	
+	@Test
+	public void testFindCommmonAncestor14() {
+		//     E-F------L
+		//    / H-I--J /
+		//   / /     |/
+		// A-B-C-D-G-K
+		//   |
+		//   M
+		String[] commits = {"M", "L", "K", "J", "I", "H", "G", "F", "E", "D", "C", "B", "A"};
+		String[][] parents ={{"B"}, {"F"},{"G", "J", "L"}, {"I"}, {"H"}, {"C"}, {"F","D"},{"E"}, {"B"}, {"C"}, {"B"}, {"A"}, null};
+		FindCommonAncestor target = new MyFindCommonAncestor();
+		assertEquals("not correct!", "B", target.findCommmonAncestor(commits, parents, "K", "M"));
+	}
+	
 	@Test
 	public void testFindCommmonAncestor2() {
 		FindCommonAncestor target = new YourFindCommonAncestor();
