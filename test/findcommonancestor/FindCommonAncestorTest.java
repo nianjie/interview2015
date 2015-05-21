@@ -27,13 +27,13 @@ public class FindCommonAncestorTest {
 		FindCommonAncestor target = new MyFindCommonAncestor();
 		assertEquals("not correct!", "B", target.findCommmonAncestor(commits, parents, "D", "F"));
 	}
-	
+
 	@Test
 	public void testFindCommmonAncestor11() {
 		FindCommonAncestor target = new MyFindCommonAncestor();
 		assertEquals("not correct!", "B", target.findCommmonAncestor(commits, parents, "G", "E"));
 	}
-	
+
 	@Test
 	public void testFindCommmonAncestor12() {
 		FindCommonAncestor target = new MyFindCommonAncestor();
@@ -51,7 +51,7 @@ public class FindCommonAncestorTest {
 		FindCommonAncestor target = new MyFindCommonAncestor();
 		assertEquals("not correct!", "B", target.findCommmonAncestor(commits, parents, "D", "F"));
 	}
-	
+
 	@Test
 	public void testFindCommmonAncestor14() {
 		//     E-F------L
@@ -65,7 +65,14 @@ public class FindCommonAncestorTest {
 		FindCommonAncestor target = new MyFindCommonAncestor();
 		assertEquals("not correct!", "B", target.findCommmonAncestor(commits, parents, "K", "M"));
 	}
-	
+
+
+	@Test
+	public void testFindCommmonAncestor15() {
+		FindCommonAncestor target = new MyFindCommonAncestor();
+		assertEquals("not correct!", "F", target.findCommmonAncestor(commits, parents, "G", "G"));
+	}
+
 	@Test
 	public void testFindCommmonAncestor2() {
 		FindCommonAncestor target = new YourFindCommonAncestor();
@@ -104,7 +111,7 @@ public class FindCommonAncestorTest {
 		FindCommonAncestor target = new YourFindCommonAncestor();
 		assertEquals("not correct!", "B", target.findCommmonAncestor(commits, parents, "K", "M"));
 	}
-	
+
 	@Test
 	public void testFindCommmonAncestor5() {
 		FindCommonAncestor target = new YourFindCommonAncestor();
