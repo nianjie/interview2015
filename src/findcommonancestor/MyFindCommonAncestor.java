@@ -22,22 +22,22 @@ public class MyFindCommonAncestor implements FindCommonAncestor {
 
 		for (int i = 0; i < commitHashes.length; i++) {
 			if (parentHashes[i] != null ) {
-				// if a commit at index i can be found,
+				// if a commit at index i can be found in either ancestors set,
 				// then commits held in parentHases at the same index should
-				// be the corresponding ancestors immediately or not immediately
+				// be the corresponding immediate or no immediate ancestors for the given commit
 				if (hash1Ancestors.contains(commitHashes[i])) {
 					hash1Ancestors.addAll(Arrays.asList(parentHashes[i]));
 				}
 				if (hash2Ancestors.contains(commitHashes[i])) {
 					hash2Ancestors.addAll(Arrays.asList(parentHashes[i]));
 				}
-				// remove given commits selves
-				if (commitHash1.equals(commitHashes[i])) {
-					hash1Ancestors.remove(commitHash1);
-				}
-				if (commitHash2.equals(commitHashes[i])) {
-					hash1Ancestors.remove(commitHash2);
-				}
+			}
+			// remove given commits selves
+			if (commitHash1.equals(commitHashes[i])) {
+				hash1Ancestors.remove(commitHash1);
+			}
+			if (commitHash2.equals(commitHashes[i])) {
+				hash1Ancestors.remove(commitHash2);
 			}
 			// hit the most recent common ancestor if current commit
 			// is held in both of ancestor sets.

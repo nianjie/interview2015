@@ -66,11 +66,22 @@ public class FindCommonAncestorTest {
 		assertEquals("not correct!", "B", target.findCommmonAncestor(commits, parents, "K", "M"));
 	}
 
-
 	@Test
 	public void testFindCommmonAncestor15() {
 		FindCommonAncestor target = new MyFindCommonAncestor();
 		assertEquals("not correct!", "F", target.findCommmonAncestor(commits, parents, "G", "G"));
+	}
+
+	@Test
+	public void testFindCommmonAncestor16() {
+		FindCommonAncestor target = new MyFindCommonAncestor();
+		assertEquals("not correct!", "B", target.findCommmonAncestor(commits, parents, "E", "C"));
+	}
+
+	@Test
+	public void testFindCommmonAncestor17() {
+		FindCommonAncestor target = new MyFindCommonAncestor();
+		assertEquals("not correct!", null, target.findCommmonAncestor(commits, parents, "A", "A"));
 	}
 
 	@Test
