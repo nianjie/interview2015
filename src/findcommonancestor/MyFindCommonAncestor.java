@@ -3,11 +3,8 @@
  */
 package findcommonancestor;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -36,35 +33,18 @@ public class MyFindCommonAncestor implements FindCommonAncestor {
 				}
 			}
 		}
-		//remove given commits selves
+		//remove given commits selves from ancestors
 		hash1Ancestors.remove(commitHash1);
 		hash2Ancestors.remove(commitHash2);
-		//by performing intersection common ancestors can be found.
-		if (hash1Ancestors.retainAll(hash2Ancestors)) {
-			return mostRecentAncestor(commitHashes, hash1Ancestors);
+
+		//find the most recent common ancestors between given commits.
+		for (int i = 0; i < commitHashes.length; i++) {
+			if (hash1Ancestors.contains(commitHashes[i]) && hash2Ancestors.contains(commitHashes[i])) {
+				return commitHashes[i];
+			}
 		}
 
 		return null;
-	}
-
-	private String mostRecentAncestor(String[] commitHashes,
-			Set<String> hash1Ancestors) {
-		List<Integer> index = new ArrayList<Integer>(hash1Ancestors.size());
-		for (Iterator<String> iterator = hash1Ancestors.iterator(); iterator.hasNext();) {
-			index.add(getCommitIndex(commitHashes, iterator.next()));
-		}
-		java.util.Collections.sort(index);
-
-		return commitHashes[index.get(0)];
-	}
-
-	private int getCommitIndex(String[] commitHashes, String commitHash) {
-		for (int i = 0; i < commitHashes.length; i++) {
-			if (commitHash.equals(commitHashes[i])) {
-				return i;
-			}
-		}
-		return -1;
 	}
 
 }
