@@ -39,7 +39,8 @@ public class MyFindCommonAncestor implements FindCommonAncestor {
 					hash1Ancestors.remove(commitHash2);
 				}
 			}
-			//find the most recent common ancestors between given commits.
+			// hit the most recent common ancestor if current commit
+			// is held in both of ancestor sets.
 			if (hash1Ancestors.contains(commitHashes[i]) && hash2Ancestors.contains(commitHashes[i])) {
 				return commitHashes[i];
 			}
