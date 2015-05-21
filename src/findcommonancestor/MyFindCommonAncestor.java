@@ -31,14 +31,15 @@ public class MyFindCommonAncestor implements FindCommonAncestor {
 				if (hash2Ancestors.contains(commitHashes[i])) {
 					hash2Ancestors.addAll(Arrays.asList(parentHashes[i]));
 				}
+				// remove given commits selves
+				if (commitHash1.equals(commitHashes[i])) {
+					hash1Ancestors.remove(commitHash1);
+				}
+				if (commitHash2.equals(commitHashes[i])) {
+					hash1Ancestors.remove(commitHash2);
+				}
 			}
-		}
-		//remove given commits selves from ancestors
-		hash1Ancestors.remove(commitHash1);
-		hash2Ancestors.remove(commitHash2);
-
-		//find the most recent common ancestors between given commits.
-		for (int i = 0; i < commitHashes.length; i++) {
+			//find the most recent common ancestors between given commits.
 			if (hash1Ancestors.contains(commitHashes[i]) && hash2Ancestors.contains(commitHashes[i])) {
 				return commitHashes[i];
 			}
