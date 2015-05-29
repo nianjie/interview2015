@@ -7,7 +7,26 @@ public class Test8 {
 		LinkedListNode next;
 	};
 
-	static int find(LinkedListNode list, LinkedListNode sublist) {
+	static LinkedListNode create(int[] vals) {
+		LinkedListNode head = null;
+		LinkedListNode end = null;
+		for (int i = 0; i < vals.length; i++) {
+			end = new LinkedListNode();
+			end.val = String.valueOf(vals[i]);
+			if (head == null) {
+				head = end;
+			} else {
+				LinkedListNode start = head;
+				while (start.next != null) {
+					start = start.next;
+				}
+				start.next = end;
+			}
+		}
+		return head;
+	}
+
+	public int find(LinkedListNode list, LinkedListNode sublist) {
 		int index = 0;
 		LinkedListNode start = list;
 		while (start.next != null) {
@@ -20,12 +39,10 @@ public class Test8 {
 		return -1;
 	}
 
-	private static boolean compare(LinkedListNode list, LinkedListNode sublist) {
+	private boolean compare(LinkedListNode list, LinkedListNode sublist) {
 		while (list.next != null && sublist.next != null) {
 			return compare(list.next, sublist.next);
 		}
-		System.out.println("main.val" + list.val);
-		System.out.println("sub.val" + sublist.val);
 		return list.val.equals(sublist.val);
 	}
 }
